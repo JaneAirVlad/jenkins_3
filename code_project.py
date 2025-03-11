@@ -13,7 +13,7 @@ def get_input_from_file():
 def data_collection(inputs):                             
     global quantity, lenght, symbol, chars
     chars = ''
-    quantity = int(inputs[0)  # Количество паролей
+    quantity = int(inputs[0])  # Количество паролей
     lenght = int(inputs[1])    # Длина пароля
     if quantity == 0 or lenght == 0:
         print('Неверное количество паролей или их длина!')
