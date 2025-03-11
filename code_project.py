@@ -6,18 +6,16 @@ lowercase_letters = 'abcdefghijklmnopqrstuvwxyz'
 uppercase_letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 punctuation = '!#$%&*+-=?@^_'
 
-def get_input_from_file():
-    with open('input_data.txt', 'r', encoding='utf-8') as file:
+def get_input_from_file(filename='input_data.txt'):
+    with open(filename, 'r', encoding='utf-8') as file:
         return [line.strip() for line in file.readlines()]
 
-def data_collection(inputs):                             
-    global quantity, lenght, symbol, chars
+def data_collection(inputs):
     chars = ''
     quantity = int(inputs[0])  # Количество паролей
-    lenght = int(inputs[1])    # Длина пароля
-    if quantity == 0 or lenght == 0:
-        print('Неверное количество паролей или их длина!')
-        return
+    length = int(inputs[1])    # Длина пароля
+    if quantity == 0 or length == 0:
+        return None, None, None
 
     # Обработка включения различных символов
     if inputs[2].lower() == 'да':
@@ -31,29 +29,29 @@ def data_collection(inputs):
     symbol = inputs[6]  # Исключать ли неоднозначные символы
   
     if chars == '':
-        print('Вы неправильно сформировали запрос для пароля. Попробуйте еще раз!')
-        return
+        return None, None, None
 
-def generate_password(lenght, quantity, chars):
-    password = ''
-    for i in range(quantity):
-        num = lenght
-        while num > 0:
-            password += random.choice(chars)
-            num -= 1
-        if symbol.lower() == 'да':
-            for c in 'il1Lo0O':
-                chars = chars.replace(c, '')
-        print(password)
-        num = lenght
-        password = ''
+    return quantity, length, chars, symbol
 
-def restart():
-    inputs = get_input_from_file()
-    data_collection(inputs)
+def generate_password(length, quantity, chars):
+    passwords = []
+    for _ in range(quantity):
+        password = ''.join(random.choice(chars) for _ in range(length))
+        passwords.append(password)
+    return passwords
+
+def restart(filename='input_data.txt'):
+    inputs = get_input_from_file(filename)
+    quantity, length, chars, symbol = data_collection(inputs)
+    
     if chars:  # Если символы неправильные - не генерировать пароли
-        generate_password(lenght, quantity, chars)
+        passwords = generate_password(length, quantity, chars)
+        return passwords
+    return None
 
-print('Добро пожаловать в генератор паролей.Сейчас я сгенерирую пароли по параметрам, которые ты задал в файле input_data.txt.')
-restart()
-print('Всегда рады Вам помочь! До свидания.')
+if __name__ == '__main__':
+    print('Добро пожаловать в генератор паролей.Сейчас я сгенерирую пароли по параметрам, которые ты задал в файле input_data.txt.')
+    passwords = restart()
+    for password in passwords:
+        print(password)
+    print('Всегда рады Вам помочь! До свидания.')
