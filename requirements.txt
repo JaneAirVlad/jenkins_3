@@ -6,3 +6,4 @@ pandas==1.4.2
 
 # Для тестирования
 pytest==7.1.2
+HtmlTestRunner
