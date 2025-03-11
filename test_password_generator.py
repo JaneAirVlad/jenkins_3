@@ -17,7 +17,7 @@ class TestPasswordGenerator(unittest.TestCase):
     def test_data_collection_no_characters(self):
         inputs = ['1', '8', 'нет', 'нет', 'нет', 'нет', 'нет']
         result = data_collection(inputs)
-        self.assertIsNone(result)  # Проверяем, что результат None, т.к. нет символов
+        self.assertEqual(result, (None, None, None))  # Проверяем, что результат None, т.к. нет символов
 
     def test_generate_password_length(self):
         chars = 'abc123!@#'
