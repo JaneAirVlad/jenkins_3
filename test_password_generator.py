@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch
-from your_password_generator import data_collection, generate_password  # Импортируйте функции из вашего файла
+from code_project import data_collection, generate_password  # Импортируйте функции из вашего файла
 
 class TestPasswordGenerator(unittest.TestCase):
     
