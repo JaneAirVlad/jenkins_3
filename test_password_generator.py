@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch
+import xmlrunner
 from code_project import data_collection, generate_password
 
 class TestPasswordGenerator(unittest.TestCase):
@@ -30,4 +30,5 @@ class TestPasswordGenerator(unittest.TestCase):
         self.assertEqual(generated_password, [])  # Проверяем, что ничего не сгенерировано
 
 if __name__ == '__main__':
-    unittest.main()
+    with open('test_results.xml', 'wb') as output:  # Создаем XML файл для отчетов
+        unittest.main(testRunner=xmlrunner.XMLTestRunner(output=output), buffer=True, failfast=True)
