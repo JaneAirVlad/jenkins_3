@@ -1,9 +1,9 @@
 16
 16
 Да
-Нет
-Нет
 Да
-Нет
+Да
+Да
+Да
 Vlad Pozniak
 vlad_p@test.ru
