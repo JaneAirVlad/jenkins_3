@@ -5,4 +5,5 @@
 Нет
 Да
 Нет
-Vlad
+Vlad Pozniak
+vlad_p@test.ru
